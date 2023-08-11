@@ -34,6 +34,15 @@ public abstract class Per {
             cards[i]=new Card();
         }
     }
+
+    protected void initializePer(Card[] cards) {
+        for (int i = 0; i < this.getCards().length; i++) {
+            this.getCards()[i].setRow(cards[i].getRow());
+            this.getCards()[i].setCol(cards[i].getCol());
+        }
+        turn();
+    }
+
     public void  print(){
         for (Card card : cards) {
             sMap[card.getRow()][card.getCol()] = card;
@@ -52,31 +61,7 @@ public abstract class Per {
             case 2-> this.turnLeft();
             case 3-> this.turnRight();
         }
-//        initPer();//初始化位置
     }
-
-
-    /**
-     * 初始化位置   找最高的行，如果不是第0行，就向下移动到0行、
-     */
-//    protected void initPer(){
-//        int minRow = Map.ROW;
-//        for (Card card : this.cards) {
-//            if (card.getRow()<minRow){
-//                minRow=card.getRow();
-//            }
-//        }
-//        if (minRow!=0){
-//            for (Card card : this.cards) {
-//                card.setRow(card.getRow()-minRow);
-//            }
-//            for (int i = 0; i < this.cards.length; i++) {
-//                cards[i].setRow(cards[i].getRow()-minRow);
-//                cards[i].setRow();
-//            }
-//        }
-//    }
-
 
     public void setPer(Per per) {
         for (Card card : this.cards) {

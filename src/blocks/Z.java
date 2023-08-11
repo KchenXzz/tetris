@@ -11,16 +11,12 @@ import models.Card;
  */
 public class Z extends Per {
     public Z() {
-        Card[] cards5 = new Card[4];
-        cards5[0] = new Card(0, 0);
-        cards5[1] = new Card(0, 1);
-        cards5[2] = new Card(1, 1);
-        cards5[3] = new Card(1, 2);
-        for (int i = 0; i < this.getCards().length; i++) {
-            this.getCards()[i].setRow(cards5[i].getRow());
-            this.getCards()[i].setCol(cards5[i].getCol());
-        }
-        turn();
+        Card[] cards = new Card[4];
+        cards[0] = new Card(0, 0);
+        cards[1] = new Card(0, 1);
+        cards[2] = new Card(1, 1);
+        cards[3] = new Card(1, 2);
+        initializePer(cards);
     }
 
 

@@ -12,8 +12,6 @@ public class Card {
 
     private Per per;
 
-    private Map map = new Map();
-
     private int row;//行
     private int col;//列
 
@@ -28,80 +26,59 @@ public class Card {
     //移动方法
 
     /**
-     * 在地图里下落
+     * 下落
      */
     public void drop() {
-        Card[][] cards = map.getMap();
-        cards[this.row++][this.col] = null;
-        cards[this.row][this.col] = this;
-
+        this.row++;
     }
 
     /**
-     * 在地图里下落
+     * 下落
      * @param n 格子数
      */
     public void drop(int n) {
-        Card[][] cards = map.getMap();
-        cards[this.row][this.col] = null;
         row += n;
-        cards[this.row][this.col] = this;
     }
     /**
-     * 在地图里左移
+     * 左移
      */
     public void moveLeft() {
-        Card[][] cards = map.getMap();
-        cards[this.row][this.col--] = null;
-        cards[this.row][this.col] = this;
+        this.col--;
     }
     /**
-     * 在地图里左移
+     * 左移
      * @param n 格子数
      */
     public void moveLeft(int n) {
-        Card[][] cards = map.getMap();
-        cards[this.row][this.col] = null;
         col -= n;
-        cards[this.row][this.col] = this;
 
     }
     /**
-     * 在地图里右移
+     * 右移
      */
     public void moveRight() {
-        Card[][] cards = map.getMap();
-        cards[this.row][this.col++] = null;
-        cards[this.row][this.col] = this;
+        this.col++;
     }
     /**
-     * 在地图里右移
+     * 右移
      * @param n 格子数
      */
     public void moveRight(int n) {
-        Card[][] cards = map.getMap();
-        cards[this.row][this.col] = null;
         col += n;
-        cards[this.row][this.col] = this;
     }
 
     /**
-     * 在地图里上移
+     * 上移
      */
     public void up() {
-        Card[][] cards = map.getMap();
-        cards[this.row--][this.col] = null;
-        cards[this.row][this.col] = this;
+        this.row--;
     }
     /**
-     * 在地图里上移
+     * 上移
      * @param n 格子数
      */
     public void up(int n) {
-        Card[][] cards = map.getMap();
-        cards[this.row][this.col] = null;
         row -= n;
-        cards[this.row][this.col] = this;
     }
 
     public Per getPer() {

@@ -16,33 +16,26 @@ public class O extends Per {
         cards[1] = new Card(0, 1);
         cards[2] = new Card(1, 0);
         cards[3] = new Card(1, 1);
-        for (int i = 0; i < this.getCards().length; i++) {
-            this.getCards()[i].setRow(cards[i].getRow());
-            this.getCards()[i].setCol(cards[i].getCol());
-        }
-        turn();
+        initializePer(cards);
     }
 
     /**
      * 逆时针旋转
      */
     @Override
-    public void turnLeft() {
-    }
+    public void turnLeft() {}
 
     /**
      * 顺时针旋转
      */
     @Override
-    public void turnRight() {
-    }
+    public void turnRight() {}
 
     /**
      * 反转
      */
     @Override
-    public void turnDown() {
-    }
+    public void turnDown() {}
     @Override
     public String toString() {
         return "O";

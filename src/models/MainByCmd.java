@@ -28,42 +28,42 @@ public class MainByCmd {
      * 游戏主方法
      */
     private void render() {
-        Per nextPer=getRandomPer();
-        while (true) {
-            per=nextPer;
-            System.out.println("下一个积木：");
-            nextPer=getRandomPer();
+        Per nextPer = getRandomPer();
+
+        do {
+            per = nextPer;
+            nextPer = getRandomPer();
+            System.out.println("下一个积木：" + nextPer);
             nextPer.print();
-            map.del(nextPer);//清除nextPer对map的影响
             map.setPer(per);
-            if (isOver()) {
-                map.add(per);
-                map.show();
-                System.out.println("游戏结束,得分："+score*10);
-                break;
-            }
             score++;
             map.show();
+
             while (true) {
-                switch (inputControl()) {
-                    case 1 -> per.moveLeft();
-                    case 2 -> {
-                        while (true) {
-                            if (!per.drop()) {
-                                break;
-                            }
-                        }
+                int input = inputControl();
+
+                if (input == 1) {
+                    per.moveLeft();
+                } else if (input == 2) {
+                    while (per.drop()) {
                     }
-                    case 3 -> per.moveRight();
+                } else if (input == 3) {
+                    per.moveRight();
                 }
+
                 if (!per.drop()) {
-                    map.add(per);// 下一行判断消除
+                    map.add(per);
                     subtract();
                     break;
                 }
+
                 map.show();
             }
-        }
+        } while (!isOver());
+
+        map.add(per);
+        map.show();
+        System.out.println("游戏结束，得分：" + score * 10);
     }
 
     /**
@@ -83,8 +83,6 @@ public class MainByCmd {
             }
             if (shouldCollapse) {
                 // 下移上方有方块的位置
-//                System.out.println(row + "行可以消除");
-//                map.show();
                 for (int r = row; r > 0; r--) {
                     boolean rowAboveEmpty = true;
                     for (int col = 0; col < Map.COL; col++) {
@@ -98,8 +96,6 @@ public class MainByCmd {
                         break; // 上方的行都是空，结束遍历
                     }
                 }
-//                map.show();
-//                System.out.println("---------------------------");
             }
         }
     }
@@ -110,7 +106,7 @@ public class MainByCmd {
      */
     public void subtract() {
         int lowRow = 0;
-        int highRow = 0;
+        int highRow = Map.ROW;
         for (int i = 0; i < per.getCards().length; i++) {//遍历当前添加的积木的所有块
             if (per.getCards()[i].getRow() > lowRow) {
                 lowRow = per.getCards()[i].getRow();//找到最靠下的块的行
@@ -120,10 +116,6 @@ public class MainByCmd {
             }
         }
         rowCollapse(lowRow, highRow);
-//        Card[] cards = per.getCards();
-//        for (Card card : cards) {
-//            System.out.println("row "+card.getRow()+" col "+card.getCol());
-//        }
     }
 
 
@@ -132,20 +124,14 @@ public class MainByCmd {
      * @return 结束ture  不结束 false
      */
     public boolean isOver() {
-//        System.out.println("per " + per);
-//        System.out.println("map.per " + map.getPer());
         map.del(per);
         for (Card card : per.getCards()) {
-            if (map.getMap()[card.getRow() + 1][card.getCol()] != null) {
-//                System.out.println(card.getRow() + 1);
-//                System.out.println(card.getCol());
-               // map.add(per);
+            if (map.getMap()[card.getRow()][card.getCol()] != null) {;
                 return true;
             }
         }
         map.add(per);
         return false;
-
     }
 
     /**

@@ -16,11 +16,8 @@ public class N extends Per {
         cards[1] = new Card(1, 0);
         cards[2] = new Card(1, 1);
         cards[3] = new Card(2, 1);
-        for (int i = 0; i < this.getCards().length; i++) {
-            this.getCards()[i].setRow(cards[i].getRow());
-            this.getCards()[i].setCol(cards[i].getCol());
-        }
-        turn();
+        initializePer(cards);
+
     }
 
     /**

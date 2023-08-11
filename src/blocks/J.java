@@ -16,12 +16,7 @@ public class J extends Per {
         cards[1] = new Card(0, 1);
         cards[2] = new Card(0, 2);
         cards[3] = new Card(1, 2);
-        for (int i = 0; i < this.getCards().length; i++) {
-            this.getCards()[i].setRow(cards[i].getRow());
-            this.getCards()[i].setCol(cards[i].getCol());
-        }
-        turn();
-
+        initializePer(cards);
     }
 
 
@@ -51,11 +46,12 @@ public class J extends Per {
     public void turnDown() {
         Card[] cards = this.getCards();
         cards[0].moveRight(2);
-        cards[0].drop(2);
-        cards[1].drop(2);
-        cards[2].drop(2);
+        cards[0].drop();
+        cards[1].drop();
+        cards[2].drop();
         cards[2].moveLeft(2);
         cards[3].moveLeft(2);
+        cards[3].up();
     }
     @Override
     public String toString() {
